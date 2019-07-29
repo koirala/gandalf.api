@@ -17,13 +17,36 @@ services:
     volumes:
       - ./../gandalf.api:/gandalf.api
     depends_on:
-      - db
+      - mongo
     links:
-      - db
-  db:
+      - mongo
+  mongo:
     image: mongo:latest
     container_name: gandalf_mongodb
     ports:
       - 27017:27017
     volumes:
       - /data/db
+      
+  mongo-express: 
+    image: mongo-express:latest
+    container_name: mongowebui
+    ports:
+     - 8081:8081
+    links:
+     - mongo
+     
+  web:
+    image: nebo15/gandalf.web:latest
+    container_name: gandalf_web
+    ports:
+      - 8080:8080
+    environment:
+      - API_ENDPOINT="http://php/"
+      - API_CLIENTID="clientid"
+      - API_CLIENTSECRET="clientsecret"
+    depends_on:
+      - php
+    links:
+      - php
+      - mongo

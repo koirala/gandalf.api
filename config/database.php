@@ -5,7 +5,7 @@ return [
     'connections' => [
         'testing' => [
             'driver' => 'mongodb',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'mongo'),
             'port' => env('DB_PORT', 27017),
             'database' => env('DB_DATABASE', 'scoring_test'),
             'username' => env('DB_USERNAME', ''),
@@ -14,7 +14,7 @@ return [
         ],
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'mongo'),
             'port' => env('DB_PORT', 27017),
             'database' => env('DB_DATABASE', 'gandalf'),
             'username' => env('DB_USERNAME', ''),
